@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Event - CampusConnect</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f5f7ff;
+            padding: 30px;
+        }
+        .container {
+            max-width: 550px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0 18px;
+            box-sizing: border-box;
+        }
+        button {
+            background: #4f46e5;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Edit Event</h2>
+
+    <form method="POST">
+        <label>Event Name</label>
+        <input type="text" name="event_name" value="{{ event[1] }}" required>
+
+        <label>Description</label>
+        <textarea name="description" required>{{ event[2] }}</textarea>
+
+        <label>Event Date</label>
+        <input type="date" name="event_date" value="{{ event[3] }}" required>
+
+        <label>Venue</label>
+        <input type="text" name="venue" value="{{ event[4] }}" required>
+
+        <label>Category</label>
+        <select name="category" required>
+            {% for category in ['Technical', 'Cultural', 'Sports', 'Other'] %}
+            <option value="{{ category }}"
+            {% if event[5] == category %}selected{% endif %}>
+                {{ category }}
+            </option>
+            {% endfor %}
+        </select>
+
+        <label>Capacity</label>
+        <input type="number" name="capacity" value="{{ event[6] }}" min="1" required>
+
+        <button type="submit">Update Event</button>
+    </form>
+
+    <p><a href="/admin">Back to Dashboard</a></p>
+</div>
+</body>
+</html>

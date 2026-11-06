@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+*.db
+*.sqlite
+*.sqlite3
+.env
+.venv/
+venv/
+.ipynb_checkpoints/
+master_backup/
+CampusConnect_Final_Backup.zip
