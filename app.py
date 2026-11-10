@@ -345,6 +345,24 @@ def init_db():
         FOREIGN KEY(event_id) REFERENCES events(event_id)
     );
     """)
+    event_count = conn.execute(
+        "SELECT COUNT(*) FROM events"
+    ).fetchone()[0]
+
+    if event_count == 0:
+        demo_events = [
+            ("Tech Fest 2026", "Annual technical festival", "2026-11-20", "Main Auditorium", "Technical", 100),
+            ("Cultural Night", "Annual cultural celebration", "2026-11-25", "College Ground", "Cultural", 200),
+            ("Coding Competition", "Programming competition", "2026-12-02", "Computer Lab", "Technical", 50),
+            ("Sports Meet", "Annual sports event", "2026-12-10", "Sports Ground", "Sports", 150),
+            ("AI Workshop", "Introduction to Artificial Intelligence", "2026-12-15", "Seminar Hall", "Workshop", 80)
+        ]
+
+        conn.executemany("""
+            INSERT INTO events
+            (event_name, description, event_date, venue, category, capacity)
+            VALUES (?, ?, ?, ?, ?, ?)
+        """, demo_events)
 
     conn.commit()
     conn.close()
