@@ -6,7 +6,10 @@ from jinja2 import FileSystemLoader
 
 PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = os.path.join(PROJECT_PATH, "database", "campusconnect.db")
-ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "change-this-demo-password")
+ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD")
+
+if not ADMIN_PASSWORD:
+    raise RuntimeError("ADMIN_PASSWORD environment variable is required")
 
 app = Flask(
     __name__,
@@ -14,7 +17,10 @@ app = Flask(
     static_folder=os.path.join(PROJECT_PATH, "static")
 )
 
-app.secret_key = os.environ.get("FLASK_SECRET_KEY", "change-this-demo-secret")
+app.secret_key = os.environ.get("FLASK_SECRET_KEY")
+
+if not app.secret_key:
+    raise RuntimeError("FLASK_SECRET_KEY environment variable is required")
 app.jinja_loader = FileSystemLoader(os.path.join(PROJECT_PATH, "templates"))
 
 
