@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CampusConnect - Events</title>
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <section class="events">
+        <h1>Explore Campus Events</h1>
+        <p>Discover exciting events happening on campus!</p>
+
+        <div class="event-container">
+
+            {% for event in events %}
+            <div class="event-card">
+
+                <h2>{{ event[1] }}</h2>
+
+                <p>{{ event[2] }}</p>
+
+                <p><b>Date:</b> {{ event[3] }}</p>
+
+                <p><b>Venue:</b> {{ event[4] }}</p>
+
+                <p><b>Category:</b> {{ event[5] }}</p>
+
+                <p><b>Available Capacity:</b> {{ event[6] }}</p>
+
+            </div>
+            {% endfor %}
+
+        </div>
+    </section>
+
+</body>
+</html>

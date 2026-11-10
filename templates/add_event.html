@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add New Event - CampusConnect</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f5ff;
+            color: #172554;
+            padding: 30px;
+        }
+
+        .event-form {
+            max-width: 500px;
+            margin: 30px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #cbd5e1;
+            border-radius: 7px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            background: #4f46e5;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #4f46e5;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="event-form">
+        <h1>Add New Event</h1>
+
+        <form action="/add-event" method="POST">
+
+            <input type="text" name="event_name"
+                   placeholder="Event Name" required>
+
+            <textarea name="description"
+                      placeholder="Event Description"
+                      required></textarea>
+
+            <input type="date" name="event_date" required>
+
+            <input type="text" name="venue"
+                   placeholder="Event Venue" required>
+
+            <select name="category" required>
+                <option value="">Select Category</option>
+                <option value="Technical">Technical</option>
+                <option value="Cultural">Cultural</option>
+                <option value="Sports">Sports</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <input type="number" name="capacity"
+                   placeholder="Event Capacity"
+                   min="1" required>
+
+            <button type="submit">Add Event</button>
+
+        </form>
+
+        <a href="/admin">Back to Dashboard</a>
+    </div>
+
+</body>
+</html>

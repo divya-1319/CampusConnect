@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusConnect | College Events</title>
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<nav class="navbar">
+    <div class="logo">CampusConnect</div>
+    <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#events">Events</a>
+<a href="#register">Register</a>
+        <a href="#about">About</a>
+    </div>
+</nav>
+
+<section class="hero" id="home">
+    <div class="hero-content">
+        <span class="tag">YOUR CAMPUS, YOUR COMMUNITY</span>
+        <h1>Welcome to <span>CampusConnect!</span></h1>
+        <h2>College Event Management System</h2>
+        <p>Discover events, connect with students and make
+        unforgettable college memories.</p>
+        <a href="#events" class="btn">Explore Events →</a>
+    </div>
+</section>
+
+<section class="events" id="events">
+    <h2>Explore Campus Events</h2>
+    <p class="section-text">Something exciting is always happening!</p>
+
+    <div class="event-container">
+
+        {% for event in events %}
+        <div class="event-card">
+            <div class="event-icon">🎉</div>
+            <h3>{{ event[0] }}</h3>
+            <p>{{ event[1] }}</p>
+            <span>{{ event[2] }}</span>
+        </div>
+        {% endfor %}
+
+    </div>
+</section>
+
+
+<section class="register" id="register">
+    <h2>Register for an Event</h2>
+    <p>Be part of your favourite campus events!</p>
+
+    <form action="/register" method="POST" class="register-form">
+
+        <input type="text" name="name"
+        placeholder="Enter your full name" required>
+
+        <input type="email" name="email"
+        placeholder="Enter your email" required>
+
+        <select name="event" required>
+    <option value="">Select an Event</option>
+    {% for event in events %}
+    <option value="{{ event[0] }}">{{ event[0] }}</option>
+    {% endfor %}
+</select>
+
+        <button type="submit" class="btn">
+            Submit Registration
+        </button>
+    </form>
+</section>
+\n<section class="about" id="about">
+    <h2>About CampusConnect</h2>
+    <p>CampusConnect brings all your college events together
+    in one place. Stay updated, participate and make memories!</p>
+</section>
+
+<footer>
+    <p>© 2026 CampusConnect | College Event Management System</p>
+</footer>
+
+</body>
+</html>

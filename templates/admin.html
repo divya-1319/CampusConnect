@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CampusConnect - Admin Dashboard</title>
+    
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f1f5ff;
+    color: #172554;
+    padding: 30px 6%;
+}
+
+h1 {
+    text-align: center;
+    margin: 20px 0 35px;
+    font-size: 30px;
+}
+
+h2 {
+    margin: 30px 0 15px;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 22px;
+    margin-bottom: 40px;
+}
+
+.card {
+    background: white;
+    padding: 30px 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    border-top: 5px solid #4f46e5;
+}
+
+.card h2 {
+    font-size: 35px;
+    color: #4f46e5;
+    margin: 5px 0 10px;
+}
+
+.card p {
+    color: #64748b;
+    font-weight: bold;
+}
+
+table {
+    width: 100%;
+    background: white;
+    border-collapse: collapse;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 16px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+th {
+    background: #172554;
+    color: white;
+}
+
+a {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 12px 22px;
+    background: #4f46e5;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+@media (max-width: 600px) {
+    body { padding: 20px 4%; }
+    h1 { font-size: 24px; }
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 25px;
+    background: #172554;
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+
+.logo {
+    color: white;
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    gap: 15px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0;
+    padding: 10px 15px;
+    background: #4f46e5;
+    border-radius: 7px;
+}
+
+.nav-links a:hover {
+    background: #6366f1;
+}
+
+</style>
+
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">CampusConnect</div>
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/events">Explore Events</a>
+        <a href="/logout">Logout</a>
+    </div>
+</nav>
+
+
+    <h1>CampusConnect Admin Dashboard</h1>
+
+    <div class="stats">
+        <div class="card">
+            <h2>{{ total_events }}</h2>
+            <p>Total Events</p>
+        </div>
+
+        <div class="card">
+            <h2>{{ total_students }}</h2>
+            <p>Registered Students</p>
+        </div>
+
+        <div class="card">
+            <h2>{{ total_registrations }}</h2>
+            <p>Total Registrations</p>
+        </div>
+    </div>
+
+    <div style="text-align:right; margin:20px 0;"><a href="/add-event" style="background:#4f46e5; color:white; padding:12px 20px; border-radius:8px; text-decoration:none; font-weight:bold;">+ Add New Event</a></div><h2>Event-wise Registrations</h2>
+
+    <table>
+        <tr>
+            <th>Event Name</th>
+            <th>Total Registrations</th>
+            <th>Action</th>
+        </tr>
+
+        {% for event in event_data %}
+        <tr>
+            <td>{{ event[1] }}</td>
+            <td>{{ event[2] }}</td>
+            <td>
+                <a href="/edit-event/{{ event[0] }}"
+                   style="margin:0; padding:8px 15px;">
+                   Edit
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <p><a href="/">Go Back Home</a></p>
+
+</body>
+</html>
